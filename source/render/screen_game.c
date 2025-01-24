@@ -41,6 +41,22 @@ void render_all_words(void)
     }
 }
 
+
+void render_time_bar(void)
+{
+    char *progress = malloc(500 * sizeof(char));
+    int i = 0;
+
+    while (i < (int)screen.elapsed_time) {
+        progress[i] = '-';
+        i++;
+    }
+    progress[i] = '\0'  ;
+    printf("[%.2f] [%s]\n", screen.elapsed_time, progress);
+    display_text(progress, 0, infos.height-40, sfWhite, 40, 0);
+    free(progress);
+}
+
 void render_game(void)
 {
     screen.elapsed_time = sfTime_asSeconds(sfClock_getElapsedTime(screen.clock));
@@ -51,4 +67,5 @@ void render_game(void)
     edit_word();
     render_game_time();
     render_all_words();
+    render_time_bar();
 }
