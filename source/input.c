@@ -18,16 +18,15 @@ int is_enough_space(char *string)
     return -1;
 }
 
-void finish_game(char w)
+void finish_game(void)
 {
-    if (w == 'Y') {
-        infos.win = 1;
+    if (infos.game_id == settings.nb_games) {
+        infos.screen = 2;
+        return;
     }
-    if (w == 'N') {
-        infos.win = -1;
-    }
-    words.actual = "GAME_ENDED";
-    infos.screen = 2;
+    infos.game_id++;
+    relaunch_game();
+    return;
 }
 
 void switch_actual_word(void)
@@ -35,10 +34,7 @@ void switch_actual_word(void)
     words.actual_id++;
 
     if (words.actual_id == 6) {
-        if (my_strcmp(words.actual, words.to_found))
-            finish_game('Y');
-        else
-            finish_game('N');
+        finish_game();
         return;
     }
     words.actual = words.warray[words.actual_id];
@@ -84,7 +80,7 @@ void valid_answer(void)
             return;
     }
     if (my_strcmp(words.actual, words.to_found)) {
-        finish_game('Y');
+        finish_game();
         return;
     }
     switch_actual_word();

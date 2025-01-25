@@ -29,17 +29,18 @@
     #define TIMEOUT 120
 
 
-
 struct infos {
     sfRenderWindow* window;
     sfFont *font;
     int length;
     int height;
     int screen; // ID (0:MENU, 1:GAME, 2:ENDSCREEN)
+    int game_id; // ID of the actual game
     int win;
 };
 
 struct words {
+    char ***all_games;
     char **warray;
     char *to_found;
     char *actual;
@@ -52,9 +53,24 @@ struct screen {
     sfClock* clock;
 };
 
+struct settings {
+    int nb_games;
+};
+
+struct color {
+    sfColor black_cyan;
+    sfColor cyan;
+    sfColor red;
+    sfColor yellow;
+    sfColor light_gray;
+    sfColor dark_gray;
+};
+
 extern struct infos infos;
 extern struct words words;
 extern struct screen screen;
+extern struct settings settings;
+extern struct color color;
 
 //\\ ----------------------------------
 
@@ -64,6 +80,7 @@ void end_application(void);
 //\\ draw_utils.c
 void display_text(char *string, int x, int y, sfColor color, int size, int center);
 void display_picture(char *path, int x, int y, float scale, int center);
+void display_rectangle(int sx, int sy, int tx, int ty, sfColor fill_color, int has_outline, int outline_thickness, sfColor outline_color);
 
 //\\ errors.c
 int can_error_go(float start_time, float actual_time, int duration);
@@ -79,10 +96,11 @@ void relaunch_game(void);
 void init(void);
 void init_setup_malloc_words(void);
 void init_setup_fill_words(void);
+void init_color(void);
 
 //\\ input.c
 int is_enough_space(char *string);
-void finish_game(char w);
+void finish_game(void);
 void switch_actual_word(void);
 int remove_letter(void);
 int add_letter(char c);

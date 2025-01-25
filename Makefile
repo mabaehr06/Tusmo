@@ -6,9 +6,20 @@
 ##
 
 SRC 	=	main.c \
-			$(wildcard source/*.c) \
-			$(wildcard source/render/*.c) \
-			$(wildcard source/event/*.c) \
+			source/destroy.c \
+			source/draw_utils.c \
+			source/errors.c \
+			source/game.c \
+			source/init.c \
+			source/input.c \
+			source/parsing_word.c \
+			source/word_color.c \
+			source/event/main_while.c \
+			source/render/all.c \
+			source/render/screen_end.c \
+			source/render/screen_game.c \
+			source/render/screen_menu.c \
+
 
 SRC_LIB =	$(wildcard lib/my/*.c) \
 			$(wildcard lib/myprintf/*.c) \

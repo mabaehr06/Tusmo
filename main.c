@@ -10,6 +10,8 @@
 struct infos infos;
 struct words words;
 struct screen screen;
+struct settings settings;
+struct color color;
 
 void show_rectangle(int x, int y, char *string, int index)
 {
@@ -63,7 +65,7 @@ int main(void)
     word_to_get();
     while (sfRenderWindow_isOpen(infos.window)) {
         carry_event(event);
-        sfRenderWindow_clear(infos.window, sfColor_fromRGB(8, 76, 97));
+        sfRenderWindow_clear(infos.window,color.black_cyan);
         render();
         sfRenderWindow_display(infos.window);
     }

@@ -14,8 +14,8 @@ void end_application(void)
     sfRenderWindow_close(infos.window);
     // sfRenderWindow_destroy(infos.window);
     // sfClock_destroy(screen.clock);
-    sfFont_destroy(infos.font);
-    free(words.actual);
-    free(words.to_found);
-    free(words.alphabet);
+    // sfFont_destroy(infos.font);
+    // free(words.actual);
+    // free(words.to_found);
+    // free(words.alphabet);
 }

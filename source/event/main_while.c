@@ -49,7 +49,7 @@ void event_end_screen(sfEvent event)
 {
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code == sfKeyEnter) {
-            relaunch_game();
+            end_application();
         }
     }
 }
