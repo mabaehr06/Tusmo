@@ -18,7 +18,7 @@ void display_error_message(char *message, int x, int y, int duration)
 {
     float now = screen.elapsed_time;
 
-    if (can_error_go(now, screen.elapsed_time, duration)) {
+    while (now - screen.elapsed_time < duration) {
         display_text(message, x, y, sfRed, 40, 0);
     }
 }

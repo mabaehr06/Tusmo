@@ -9,18 +9,21 @@
 
 void init_setup_infos(void)
 {
-    infos.length = 1680;
-    infos.height = 850;
+    infos.length = 1800;
+    infos.height = 975;
     infos.screen = 0;
     infos.win = 0;
-
     infos.game_id = 1;
-
-    settings.nb_games = 3;
 
     infos.window = sfRenderWindow_create((sfVideoMode){infos.length, infos.height, 32}, "Tusmo", sfResize | sfClose, NULL);
     sfRenderWindow_setPosition(infos.window, (sfVector2i){50, 50});
     infos.font = sfFont_createFromFile("assets/HelveticaNeueBold.otf");
+
+    settings.nb_games = 15;
+    settings.result_games = malloc(settings.nb_games * sizeof(int));
+    for (int i = 0; i != settings.nb_games; i++) {
+        settings.result_games[i] = 84;
+    }
 }
 
 void init_color(void)

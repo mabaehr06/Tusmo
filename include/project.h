@@ -55,6 +55,7 @@ struct screen {
 
 struct settings {
     int nb_games;
+    int *result_games;
 };
 
 struct color {

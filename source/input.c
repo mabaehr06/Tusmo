@@ -20,6 +20,11 @@ int is_enough_space(char *string)
 
 void finish_game(void)
 {
+    if (my_strcmp(words.actual, words.to_found))
+        settings.result_games[infos.game_id-1] = 1;
+    else
+        settings.result_games[infos.game_id-1] = 0;
+
     if (infos.game_id == settings.nb_games) {
         infos.screen = 2;
         return;
@@ -63,8 +68,6 @@ int add_letter(char c)
 
     while (words.actual[i] != ' ' && words.actual[i] != '.') {
         if (words.actual[i] == '\0') {
-            printf("Error message\n");
-            // display_error_message("Cannot Content", 100, 100, 3);
             return 1;
         }
         i++;
