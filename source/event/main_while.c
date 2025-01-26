@@ -20,6 +20,7 @@ void event_main_game(sfEvent event)
             }
         }
     }
+    right_bar_event(event);
 }
 
 void event_menu(sfEvent event)

@@ -27,6 +27,8 @@
     #define INCLUDED_PROJECT_H
 
     #define TIMEOUT 120
+    #define MOUSE_SCROLLING_SENSITIVITY 50
+    #define NB_GAMES 5;
 
 
 struct infos {
@@ -36,7 +38,6 @@ struct infos {
     int height;
     int screen; // ID (0:MENU, 1:GAME, 2:ENDSCREEN)
     int game_id; // ID of the actual game
-    int win;
 };
 
 struct words {
@@ -51,6 +52,7 @@ struct words {
 struct screen {
     float elapsed_time;
     sfClock* clock;
+    int scrolling;
 };
 
 struct settings {
@@ -65,6 +67,7 @@ struct color {
     sfColor yellow;
     sfColor light_gray;
     sfColor dark_gray;
+    sfColor dark_green;
 };
 
 extern struct infos infos;
@@ -102,7 +105,7 @@ void init_color(void);
 //\\ input.c
 int is_enough_space(char *string);
 void finish_game(void);
-void switch_actual_word(void);
+void go_next_word(void);
 int remove_letter(void);
 int add_letter(char c);
 void valid_answer(void);

@@ -11,10 +11,11 @@ SRC 	=	main.c \
 			source/errors.c \
 			source/game.c \
 			source/init.c \
-			source/input.c \
 			source/parsing_word.c \
-			source/word_color.c \
+			source/algorithm/word_color.c \
+			source/algorithm/letter_input.c \
 			source/event/main_while.c \
+			source/event/in_game_event.c \
 			source/render/all.c \
 			source/render/screen_end.c \
 			source/render/screen_game.c \

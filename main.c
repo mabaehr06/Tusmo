@@ -35,7 +35,7 @@ void show_rectangle(int x, int y, char *string, int index)
 void show_row(int x, int y, char *string)
 {
     for (int i = 0; i != 6; i++) {
-        show_rectangle(x+(85*i), y, string, i);
+        show_rectangle(x+(79*i), y, string, i);
     }
 }
 

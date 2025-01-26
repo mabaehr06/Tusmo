@@ -5,7 +5,7 @@
 ** word_color
 */
 
-#include "../include/project.h"
+#include "../../include/project.h"
 
 int *copy_int_star(int *copy)
 {

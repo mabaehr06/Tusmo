@@ -5,7 +5,7 @@
 ** input
 */
 
-#include "../include/project.h"
+#include "../../include/project.h"
 
 int is_enough_space(char *string)
 {
@@ -17,35 +17,6 @@ int is_enough_space(char *string)
     }
     return -1;
 }
-
-void finish_game(void)
-{
-    if (my_strcmp(words.actual, words.to_found))
-        settings.result_games[infos.game_id-1] = 1;
-    else
-        settings.result_games[infos.game_id-1] = 0;
-
-    if (infos.game_id == settings.nb_games) {
-        infos.screen = 2;
-        return;
-    }
-    infos.game_id++;
-    relaunch_game();
-    return;
-}
-
-void switch_actual_word(void)
-{
-    words.actual_id++;
-
-    if (words.actual_id == 6) {
-        finish_game();
-        return;
-    }
-    words.actual = words.warray[words.actual_id];
-    return;
-}
-
 
 int remove_letter(void)
 {
@@ -72,6 +43,8 @@ int add_letter(char c)
         }
         i++;
     }
+    if (i == 1 && c == words.actual[0])
+        return 0;
     words.actual[i] = c;
     return 0;
 }
@@ -86,6 +59,6 @@ void valid_answer(void)
         finish_game();
         return;
     }
-    switch_actual_word();
+    go_next_word();
 }
 

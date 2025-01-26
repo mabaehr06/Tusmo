@@ -29,7 +29,7 @@ void render_game_time(void)
 
     string_time = convert_into_time(string_time, "min");
 
-    display_text(string_time, 100, 350, sfWhite, 50, 0);
+    display_text(string_time, infos.length - 280, 15, sfWhite, 30, 0);
     free(string_time);
 }
 
@@ -42,47 +42,61 @@ void render_all_words(void)
     while (i < 6) {
         show_row(midl - 250, midh + j, words.warray[i]);
         i++;
-        j+=100;
+        j+=85;
     }
 }
 
 
 void render_time_bar(void)
 {
-    char *progress = malloc(500 * sizeof(char));
     int i = 0;
 
     while (i < (int)screen.elapsed_time) {
-        progress[i] = '-';
+        display_text("|", infos.length-205, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 1);
+        display_text("|", 197, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 1);
         i++;
     }
-    progress[i] = '\0';
-    display_text(progress, 0, infos.height-40, sfWhite, 40, 0);
-    free(progress);
 }
 
 void render_current_game_id(void)
 {
     sfColor rectangle_color;
 
+    display_rectangle(infos.length-200, 0, 200, infos.height, color.cyan, 1, 3, sfWhite);
+    display_text("RESULT", infos.length-160, 25 + screen.scrolling, sfWhite, 30, 0);
+
     for (int i = 0; i != settings.nb_games; i++) {
         if (i+1 < infos.game_id) {
             if (settings.result_games[i] == 1)
-                rectangle_color = sfGreen;
+                rectangle_color = color.dark_green;
             if (settings.result_games[i] == 0)
-                rectangle_color = sfRed;
+                rectangle_color = color.red;
         }
         if (i+1 == infos.game_id)
-            rectangle_color = color.dark_gray;
-        if (i+1 > infos.game_id)
             rectangle_color = color.light_gray;
+        if (i+1 > infos.game_id) {
+            rectangle_color = color.dark_gray;
+        }
 
-        
-        display_rectangle(50 + 100 * i, infos.height - 75, 75, 40, rectangle_color, 1, 5, color.cyan);
-        display_text(int_to_str(i+1), 75 + 100 * i, infos.height - 80, sfBlack, 40, 0);
+        display_rectangle(infos.length-150, 75 + 50*i + screen.scrolling, 100, 30, rectangle_color, 1, 2, color.black_cyan);
+        if (i+1 > infos.game_id) {
+            display_picture("assets/lock.png", infos.length-100, 90 + 50*i + screen.scrolling, 0.1f, 1);
+
+        } else {
+            display_text((int_to_str(i+1)), infos.length-140, 77+50*i + screen.scrolling, sfWhite, 20, 1);
+        }
+    
     }
 }
 
+void render_current_word_id(void)
+{
+    char *str = my_strcat("Word ", int_to_str(infos.game_id));
+
+    display_rectangle(0, 0, 200, infos.height, color.cyan, 1, 3, sfWhite);
+    display_text(str, 215, 15, sfWhite, 30, 1);
+    free(str);
+}
 
 void render_game(void)
 {
@@ -90,8 +104,8 @@ void render_game(void)
     if (screen.elapsed_time >= TIMEOUT)
         end_application();
 
-    display_text(int_to_str(infos.game_id), infos.length/2, 100, sfWhite, 30, 1);
-    display_picture("assets/tusmo.png", infos.length/6, 150, 0.5f, 1);
+    render_current_word_id();
+    display_picture("assets/tusmo.png", 100, 100, 0.25f, 1);
     edit_word();
     render_game_time();
     render_all_words();
@@ -99,5 +113,7 @@ void render_game(void)
     render_time_bar();
 
     // CHEAT 
-    // display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
+
+    // Display Word
+    display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
 }
