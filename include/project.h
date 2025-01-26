@@ -28,7 +28,7 @@
 
     #define TIMEOUT 120
     #define MOUSE_SCROLLING_SENSITIVITY 50
-    #define NB_GAMES 5;
+    #define NB_GAMES 100; // Max 100
 
 
 struct infos {
@@ -47,6 +47,7 @@ struct words {
     char *actual;
     int *alphabet;
     int actual_id;
+    int *already_found;
 };
 
 struct screen {

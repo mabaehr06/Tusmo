@@ -67,6 +67,18 @@ int main(void)
         carry_event(event);
         sfRenderWindow_clear(infos.window,color.black_cyan);
         render();
+
+
+        for (int i = 0; i != settings.nb_games; i++) {
+            printf("Game %d\n", i);
+            for (int j = 0; j != 6; j++) {
+                printf("%d: %s \n", j, words.all_games[i][j]);
+            }
+            printf("\n");
+        }
+
+
+
         sfRenderWindow_display(infos.window);
     }
 }

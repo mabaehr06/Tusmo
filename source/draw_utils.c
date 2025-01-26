@@ -15,8 +15,7 @@ void display_text(char *string, int x, int y, sfColor color, int size, int cente
     sfText_setFont(text, infos.font);
     sfText_setCharacterSize(text, size);
     sfText_setString(text, string);
-
-    if (center == 1) {
+    if (center) {
         sfFloatRect offset = sfText_getGlobalBounds(text);
 
         sfText_setPosition(text, (sfVector2f)
@@ -27,8 +26,6 @@ void display_text(char *string, int x, int y, sfColor color, int size, int cente
     } else {
         sfText_setPosition(text, (sfVector2f){x, y});
     }
-
-    sfText_setPosition(text, (sfVector2f){x, y});
     sfRenderWindow_drawText(infos.window, text, NULL);
     sfText_destroy(text);
 }

@@ -52,8 +52,8 @@ void render_time_bar(void)
     int i = 0;
 
     while (i < (int)screen.elapsed_time) {
-        display_text("|", infos.length-205, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 1);
-        display_text("|", 197, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 1);
+        display_text("|", infos.length-205, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 0);
+        display_text("|", 197, -25 + (infos.height/TIMEOUT)*i, sfRed, 30, 0);
         i++;
     }
 }
@@ -80,12 +80,49 @@ void render_current_game_id(void)
 
         display_rectangle(infos.length-150, 75 + 50*i + screen.scrolling, 100, 30, rectangle_color, 1, 2, color.black_cyan);
         if (i+1 > infos.game_id) {
-            display_picture("assets/lock.png", infos.length-100, 90 + 50*i + screen.scrolling, 0.1f, 1);
+            display_picture("assets/lock.png", infos.length-130, 90 + 50*i + screen.scrolling, 0.1f, 1);
+            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling, color.light_gray, 20, 1);
 
         } else {
-            display_text((int_to_str(i+1)), infos.length-140, 77+50*i + screen.scrolling, sfWhite, 20, 1);
+            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling, sfWhite, 20, 1);
         }
     
+    }
+}
+
+void render_game_history(void)
+{
+    display_rectangle(0, 0, 200, infos.height, color.cyan, 1, 3, sfWhite);
+    display_picture("assets/tusmo.png", 100, 50, 0.25f, 1);
+
+    int index = 0;
+    int nb_words = 0;
+    int j = 0;
+
+
+    for (int i = 0; i != infos.game_id-1; i++) {
+        if (infos.game_id-1 <= 0) {
+            break;
+        }
+
+        index = 0;
+
+        while (words.all_games[i][index][j] != NULL) {
+            if (words.all_games[i][index][j] == ' ')
+                break;
+            if (words.all_games[i][index][j] == '\0') {
+                j = 0;  
+                index++;
+            }
+            j++;
+        }
+
+
+        display_rectangle(50, 100+ 30*i, 100, 100, color.black_cyan, 1, 1, sfWhite);
+        for (int j = 0; j != 6; j++) {
+            display_text(words.all_games[i][j], 50, 100 + 30*i + 30*(j+1), sfWhite, 20, 0);
+        }
+        display_text(int_to_str(index), 50, 100 + 30 * i, sfWhite, 20, 0);
     }
 }
 
@@ -93,8 +130,7 @@ void render_current_word_id(void)
 {
     char *str = my_strcat("Word ", int_to_str(infos.game_id));
 
-    display_rectangle(0, 0, 200, infos.height, color.cyan, 1, 3, sfWhite);
-    display_text(str, 215, 15, sfWhite, 30, 1);
+    display_text(str, 215, 15, sfWhite, 30, 0);
     free(str);
 }
 
@@ -104,8 +140,8 @@ void render_game(void)
     if (screen.elapsed_time >= TIMEOUT)
         end_application();
 
+    render_game_history();
     render_current_word_id();
-    display_picture("assets/tusmo.png", 100, 100, 0.25f, 1);
     edit_word();
     render_game_time();
     render_all_words();
@@ -115,5 +151,5 @@ void render_game(void)
     // CHEAT 
 
     // Display Word
-    display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
+    // display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
 }

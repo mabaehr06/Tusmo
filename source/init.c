@@ -19,7 +19,24 @@ void init_setup_infos(void)
     sfRenderWindow_setPosition(infos.window, (sfVector2i){50, 50});
     infos.font = sfFont_createFromFile("assets/HelveticaNeueBold.otf");
 
-    settings.nb_games = NB_GAMES;
+    srand(time(NULL));
+
+    settings.nb_games = rand()%NB_GAMES;
+
+    words.all_games = malloc(settings.nb_games * sizeof(char **));
+
+    for (int i = 0; i != settings.nb_games; i++) {
+        words.all_games[i] = malloc(6* sizeof(char *));
+        for (int j = 0; j != 6; j++) {
+            words.all_games[i][j] = malloc(7 * sizeof(char));
+            for (int k = 0; k != 6; k++) {
+                words.all_games[i][j][k] = ' ';
+            }
+            words.all_games[i][j][6] = '\0';
+        }
+    }
+
+
     settings.result_games = malloc(settings.nb_games * sizeof(int));
     for (int i = 0; i != settings.nb_games; i++) {
         settings.result_games[i] = 84;
@@ -28,9 +45,14 @@ void init_setup_infos(void)
 
 void init_setup_malloc_words(void)
 {
-    words.actual    = malloc(7 * sizeof(char));
-    words.to_found  = malloc(7 * sizeof(char));
-    words.warray    = malloc(6 * sizeof(char *));
+    words.actual        = malloc(7 * sizeof(char));
+    words.to_found      = malloc(7 * sizeof(char));
+    words.warray        = malloc(6 * sizeof(char *));
+    words.already_found = malloc(6 * sizeof(int));
+
+    for (int i = 0; i != 6; i++) {
+        words.already_found[i] = 0;
+    }
 }
 
 void init_setup_fill_words(void)

@@ -15,7 +15,17 @@ void go_next_word(void)
         finish_game();
         return;
     }
+    for (int i = 0; i != 6; i++) {
+        if (words.actual[i] == words.to_found[i]) {
+            words.already_found[i] = 1;
+        }
+    }
     words.actual = words.warray[words.actual_id];
+    for (int i = 0; i < 6; i++) {
+        if (words.already_found[i] == 1) {
+            words.warray[words.actual_id][i] = words.to_found[i];
+        }
+    }
     return;
 }
 
@@ -31,6 +41,14 @@ void relaunch_game(void)
 
 void finish_game(void)
 {
+    for (int i = 0; i != 6; i++) {
+        for (int j = 0; j != 6; j++) {
+            words.all_games[infos.game_id-1][i][j] = words.warray[i][j];
+        }
+    }
+
+
+
     if (my_strcmp(words.actual, words.to_found))
         settings.result_games[infos.game_id-1] = 1;
     else
