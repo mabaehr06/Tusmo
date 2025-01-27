@@ -39,8 +39,9 @@ void render_all_words(void)
     int midh = infos.height / 2;
     int midl = infos.length / 2;
     int j = -250;
+
     while (i < 6) {
-        show_row(midl - 250, midh + j, words.warray[i]);
+        show_row(midl - 237, midh + j, words.warray[i]); // (80*3 - 3) => 237;
         i++;
         j+=85;
     }
@@ -96,33 +97,39 @@ void render_game_history(void)
     display_picture("assets/tusmo.png", 100, 50, 0.25f, 1);
 
     int index = 0;
-    int nb_words = 0;
     int j = 0;
-
 
     for (int i = 0; i != infos.game_id-1; i++) {
         if (infos.game_id-1 <= 0) {
             break;
         }
-
         index = 0;
-
-        while (words.all_games[i][index][j] != NULL) {
-            if (words.all_games[i][index][j] == ' ')
+        while (words.all_games[i][index] != NULL) {
+            if (words.all_games[i][index][j] == ' ' || words.all_games[i][index][j] == '.')
                 break;
             if (words.all_games[i][index][j] == '\0') {
                 j = 0;  
                 index++;
             }
+            if (index == 6)
+                break;
             j++;
         }
 
 
-        display_rectangle(50, 100+ 30*i, 100, 100, color.black_cyan, 1, 1, sfWhite);
-        for (int j = 0; j != 6; j++) {
-            display_text(words.all_games[i][j], 50, 100 + 30*i + 30*(j+1), sfWhite, 20, 0);
+
+        display_rectangle(50, 100+ 50*i, 100, 30*index, color.black_cyan, 1, 1, sfWhite);
+        for (int j = 0; j != index; j++) {
+            for (int k = 0; k != 6; k++) {
+                char *here = malloc(2 * sizeof(char));
+
+                here[0] = words.all_games[i][j][k];
+                here[1] = '\0';
+                display_text(here, 50 + 15*k, 100 + 50 * i + 30*j, sfWhite, 20, 0);
+
+                free(here);
+            }
         }
-        display_text(int_to_str(index), 50, 100 + 30 * i, sfWhite, 20, 0);
     }
 }
 
@@ -151,5 +158,5 @@ void render_game(void)
     // CHEAT 
 
     // Display Word
-    // display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
+    display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
 }

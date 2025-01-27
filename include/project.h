@@ -82,10 +82,15 @@ extern struct color color;
 //\\ destroy.c
 void end_application(void);
 
+//\\ debug_sf_shape.c
+void debug_line_X(int position_x, sfColor color);
+void debug_line_Y(int position_x, sfColor color);
+
 //\\ draw_utils.c
 void display_text(char *string, int x, int y, sfColor color, int size, int center);
 void display_picture(char *path, int x, int y, float scale, int center);
 void display_rectangle(int sx, int sy, int tx, int ty, sfColor fill_color, int has_outline, int outline_thickness, sfColor outline_color);
+void display_rectangle_corner(sfVector2f position, sfVector2f size, float radius, sfColor color, int is_centered);
 
 //\\ errors.c
 int can_error_go(float start_time, float actual_time, int duration);
@@ -93,6 +98,7 @@ void display_error_message(char *message, int x, int y, int duration);
 
 //\\ event.c
 void carry_event(sfEvent event);
+void right_bar_event(sfEvent event);
 
 //\\ game.c
 void relaunch_game(void);
@@ -120,6 +126,14 @@ void render_end_screen(void);
 void render_game(void);
 void render_menu(void);
 void render(void);
+void debug_screen(int ac, char **av);
+
+//\\ help_file.c
+int help(int ac, char **av);
+
+//\\ csfml_shortcuts.c
+sfVector2f sfv2f(int x, int y);
+sfVector2i sfv2i(int x, int y);
 
 //\\ word_color.c
 int *copy_int_star(int *copy);

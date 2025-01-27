@@ -34,10 +34,10 @@ void event_menu(sfEvent event)
 
     if (event.type == sfEvtMouseButtonPressed) {
         pos = sfMouse_getPositionRenderWindow(infos.window);
-        startx  = infos.length/2 - 524/2;
-        starty  = infos.height/2 - 103/2;
-        endx    = infos.length/2 + 524/2;
-        endy    = infos.height/2 + 103/2;
+        startx  = infos.length/2 - 300/2;
+        starty  = infos.height/2 - 100/2;
+        endx    = infos.length/2 + 300/2;
+        endy    = infos.height/2 + 100/2;
 
         if (pos.x >= startx && pos.x <= endx && pos.y >= starty && pos.y <= endy) {
             screen.clock = sfClock_create();

@@ -19,9 +19,8 @@ void init_setup_infos(void)
     sfRenderWindow_setPosition(infos.window, (sfVector2i){50, 50});
     infos.font = sfFont_createFromFile("assets/HelveticaNeueBold.otf");
 
-    srand(time(NULL));
 
-    settings.nb_games = rand()%NB_GAMES;
+    settings.nb_games = NB_GAMES;
 
     words.all_games = malloc(settings.nb_games * sizeof(char **));
 

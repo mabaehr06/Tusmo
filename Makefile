@@ -7,7 +7,7 @@
 
 SRC 	=	main.c \
 			source/destroy.c \
-			source/draw_utils.c \
+			source/help_file.c \
 			source/errors.c \
 			source/game.c \
 			source/init.c \
@@ -16,10 +16,17 @@ SRC 	=	main.c \
 			source/algorithm/letter_input.c \
 			source/event/main_while.c \
 			source/event/in_game_event.c \
+			source/utilitaries/corner_rectangle.c \
+			source/utilitaries/debug_sf_shape.c \
+			source/utilitaries/normal_rectangle.c \
+			source/utilitaries/pictures.c \
+			source/utilitaries/texts.c \
+			source/utilitaries/csfml_shortcuts.c \
 			source/render/all.c \
 			source/render/screen_end.c \
 			source/render/screen_game.c \
 			source/render/screen_menu.c \
+			source/render/debug_file.c \
 
 
 SRC_LIB =	$(wildcard lib/my/*.c) \

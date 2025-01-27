@@ -35,7 +35,7 @@ void show_rectangle(int x, int y, char *string, int index)
 void show_row(int x, int y, char *string)
 {
     for (int i = 0; i != 6; i++) {
-        show_rectangle(x+(79*i), y, string, i);
+        show_rectangle(x+(80*i), y, string, i);
     }
 }
 
@@ -57,28 +57,19 @@ void edit_word(void)
     }
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     sfEvent event;
 
+    if (help(ac, av))
+        return 0;
     init();
     word_to_get();
     while (sfRenderWindow_isOpen(infos.window)) {
         carry_event(event);
         sfRenderWindow_clear(infos.window,color.black_cyan);
         render();
-
-
-        for (int i = 0; i != settings.nb_games; i++) {
-            printf("Game %d\n", i);
-            for (int j = 0; j != 6; j++) {
-                printf("%d: %s \n", j, words.all_games[i][j]);
-            }
-            printf("\n");
-        }
-
-
-
+        debug_screen(ac, av);
         sfRenderWindow_display(infos.window);
     }
 }
