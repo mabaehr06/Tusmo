@@ -13,7 +13,8 @@ void init_setup_infos(void)
     infos.height = (float)(infos.length * (float)(9.0f/16.0f));
     infos.screen = 0;
     infos.game_id = 1;
-    screen.scrolling = 0;
+    screen.scrolling_r = 0;
+    screen.scrolling_l = 0;
 
     infos.window = sfRenderWindow_create((sfVideoMode){infos.length, infos.height, 32}, "Tusmo", sfResize | sfClose, NULL);
     sfRenderWindow_setPosition(infos.window, (sfVector2i){50, 50});
@@ -72,6 +73,7 @@ void init_color(void)
     color.yellow = sfColor_fromRGB(220, 183, 53);
     color.cyan = sfColor_fromRGB(23, 126, 137);
     color.black_cyan = sfColor_fromRGB(8, 76, 97);
+    color.dark_cyan = sfColor_fromRGB(7, 66, 84);
     color.light_gray = sfColor_fromRGB(145, 145, 145);
     color.dark_gray = sfColor_fromRGB(70, 70, 70);
     color.dark_green = sfColor_fromRGB(29, 125, 0);

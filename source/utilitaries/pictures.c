@@ -12,6 +12,7 @@ void display_picture(char *path, int x, int y, float scale, int center)
     sfSprite *sprite = sfSprite_create();
     sfTexture *texture = sfTexture_createFromFile(path, NULL);
 
+    sfTexture_setSmooth(texture, 1);
     sfSprite_setTexture(sprite, texture, 0);
     sfSprite_setScale(sprite, (sfVector2f){scale, scale});
 

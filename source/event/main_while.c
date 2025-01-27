@@ -20,7 +20,7 @@ void event_main_game(sfEvent event)
             }
         }
     }
-    right_bar_event(event);
+    bar_event(event);
 }
 
 void event_menu(sfEvent event)
@@ -34,10 +34,10 @@ void event_menu(sfEvent event)
 
     if (event.type == sfEvtMouseButtonPressed) {
         pos = sfMouse_getPositionRenderWindow(infos.window);
-        startx  = infos.length/2 - 300/2;
-        starty  = infos.height/2 - 100/2;
-        endx    = infos.length/2 + 300/2;
-        endy    = infos.height/2 + 100/2;
+        startx  = infos.length/2 - 200;
+        endx    = infos.length/2 + 200;
+        starty  = 4 * infos.height/5 - 50;
+        endy    = 4 * infos.height/5 + 50;
 
         if (pos.x >= startx && pos.x <= endx && pos.y >= starty && pos.y <= endy) {
             screen.clock = sfClock_create();

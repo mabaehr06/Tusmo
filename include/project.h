@@ -32,6 +32,7 @@
 
 
 struct infos {
+    sfContextSettings *settings;
     sfRenderWindow* window;
     sfFont *font;
     int length;
@@ -53,7 +54,9 @@ struct words {
 struct screen {
     float elapsed_time;
     sfClock* clock;
-    int scrolling;
+    int scrolling_r;
+    int scrolling_l;
+
 };
 
 struct settings {
@@ -63,6 +66,7 @@ struct settings {
 
 struct color {
     sfColor black_cyan;
+    sfColor dark_cyan;
     sfColor cyan;
     sfColor red;
     sfColor yellow;
@@ -98,7 +102,7 @@ void display_error_message(char *message, int x, int y, int duration);
 
 //\\ event.c
 void carry_event(sfEvent event);
-void right_bar_event(sfEvent event);
+void bar_event(sfEvent event);
 
 //\\ game.c
 void relaunch_game(void);
@@ -144,6 +148,5 @@ sfColor get_color_off(char *string, int index);
 void show_rectangle(int x, int y, char *string, int index);
 void show_row(int x, int y, char *string);
 void edit_word(void);
-
 
 #endif

@@ -6,6 +6,8 @@
 */
 
 #include "../my/my.h"
+#include "myutils.h"
+
 
 int convert_str_into_int(char *str)
 {

@@ -5,6 +5,10 @@
 ** my_printf
 */
 
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #ifndef INCLUDED_MY_PRINTF_H
     #define INCLUDED_MY_PRINTF_H
 

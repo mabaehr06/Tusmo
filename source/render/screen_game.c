@@ -64,7 +64,7 @@ void render_current_game_id(void)
     sfColor rectangle_color;
 
     display_rectangle(infos.length-200, 0, 200, infos.height, color.cyan, 1, 3, sfWhite);
-    display_text("RESULT", infos.length-160, 25 + screen.scrolling, sfWhite, 30, 0);
+    display_text("RESULT", infos.length-160, 25 + screen.scrolling_r, sfWhite, 30, 0);
 
     for (int i = 0; i != settings.nb_games; i++) {
         if (i+1 < infos.game_id) {
@@ -79,13 +79,13 @@ void render_current_game_id(void)
             rectangle_color = color.dark_gray;
         }
 
-        display_rectangle(infos.length-150, 75 + 50*i + screen.scrolling, 100, 30, rectangle_color, 1, 2, color.black_cyan);
+        display_rectangle(infos.length-150, 75 + 50*i + screen.scrolling_r, 100, 30, rectangle_color, 1, 2, color.black_cyan);
         if (i+1 > infos.game_id) {
-            display_picture("assets/lock.png", infos.length-130, 90 + 50*i + screen.scrolling, 0.1f, 1);
-            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling, color.light_gray, 20, 1);
+            display_picture("assets/lock.png", infos.length-130, 90 + 50*i + screen.scrolling_r, 0.1f, 1);
+            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling_r, color.light_gray, 20, 1);
 
         } else {
-            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling, sfWhite, 20, 1);
+            display_text((int_to_str(i+1)), infos.length-100, 85+50*i + screen.scrolling_r, sfWhite, 20, 1);
         }
     
     }
@@ -118,14 +118,14 @@ void render_game_history(void)
 
 
 
-        display_rectangle(50, 100+ 50*i, 100, 30*index, color.black_cyan, 1, 1, sfWhite);
+        display_rectangle(35, 100+ 50*i, 130, 30*index, color.black_cyan, 1, 1, sfWhite);
         for (int j = 0; j != index; j++) {
             for (int k = 0; k != 6; k++) {
                 char *here = malloc(2 * sizeof(char));
 
                 here[0] = words.all_games[i][j][k];
                 here[1] = '\0';
-                display_text(here, 50 + 15*k, 100 + 50 * i + 30*j, sfWhite, 20, 0);
+                display_text(here, 60 + 15*k, 110 + 50 * i + 30*j, sfWhite, 20, 1);
 
                 free(here);
             }
@@ -158,5 +158,5 @@ void render_game(void)
     // CHEAT 
 
     // Display Word
-    display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
+    // display_text(words.to_found, infos.length/2, infos.height - 50, sfBlack, 40, 1);
 }

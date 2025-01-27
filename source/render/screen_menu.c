@@ -46,18 +46,32 @@ void render_title(void)
     sfVector2f size = (sfVector2f)         {300, 100};
 
     display_rectangle_corner(pos, size, 40, sfWhite, 1);
-    display_rectangle_corner(pos, size, 50, color.black_cyan, 1);
-    display_text("TUMSO", infos.length/2, infos.height/12, sfWhite, 60, 1);
+    display_rectangle_corner(pos, size, 50, color.dark_cyan, 1);
+    display_text("TUSMO", infos.length/2, infos.height/12, sfWhite, 60, 1);
 }
 
 void render_game_button(void)
 {
-    sfVector2f pos = (sfVector2f)          {infos.length/2, infos.height/2};
-    sfVector2f size = (sfVector2f)         {350, 100};
+    sfVector2f pos = (sfVector2f)          {(infos.length/2), (4*infos.height/5)};
+    sfVector2f size = (sfVector2f)         {400, 100};
 
     display_rectangle_corner(pos, size, 40, sfWhite, 1);
-    display_rectangle_corner(pos, size, 50, color.black_cyan, 1);
-    display_text("NEW GAME", infos.length/2, infos.height/2-10, sfWhite, 40, 1);
+    display_rectangle_corner(pos, size, 50, color.dark_cyan, 1);
+    display_text("NEW GAME", pos.x-10, pos.y-10, sfWhite, 36, 1);
+}
+
+
+void render_game_number_button(void)
+{
+    sfVector2f pos = (sfVector2f)          {(infos.length/4), (4*infos.height/5)};
+    sfVector2f size = (sfVector2f)         {200, 50};
+
+    char *games = one_string(3, "Games : [", int_to_str(settings.nb_games), "] ");
+
+
+    display_rectangle_corner(pos, size, 10, sfWhite, 1);
+    display_rectangle_corner(pos, size, 15, color.dark_cyan, 1);
+    display_text(games, pos.x-10, pos.y-10, sfWhite, 24, 1);
 }
 
 
@@ -65,8 +79,8 @@ void render_menu(void)
 {
     render_title();
     render_game_button();
+    render_game_number_button();
     render_current_time();
 
 
 }
-
