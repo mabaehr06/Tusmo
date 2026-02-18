@@ -7,31 +7,31 @@
 
 SRC 	=	main.c \
 			\
-			source/destroy.c \
-			source/help_file.c \
-			source/errors.c \
-			source/game.c \
-			source/init.c \
-			source/parsing_word.c \
+			src/destroy.c \
+			src/help_file.c \
+			src/errors.c \
+			src/game.c \
+			src/init.c \
+			src/parsing_word.c \
 			\
-			source/algorithm/word_color.c \
-			source/algorithm/letter_input.c \
+			src/algorithm/word_color.c \
+			src/algorithm/letter_input.c \
 			\
-			source/event/main_while.c \
-			source/event/in_game_event.c \
+			src/event/main_while.c \
+			src/event/in_game_event.c \
 			\
-			source/utilitaries/corner_rectangle.c \
-			source/utilitaries/debug_sf_shape.c \
-			source/utilitaries/normal_rectangle.c \
-			source/utilitaries/pictures.c \
-			source/utilitaries/texts.c \
-			source/utilitaries/csfml_shortcuts.c \
+			src/utilitaries/corner_rectangle.c \
+			src/utilitaries/debug_sf_shape.c \
+			src/utilitaries/normal_rectangle.c \
+			src/utilitaries/pictures.c \
+			src/utilitaries/texts.c \
+			src/utilitaries/csfml_shortcuts.c \
 			\
-			source/render/all.c \
-			source/render/screen_end.c \
-			source/render/screen_game.c \
-			source/render/screen_menu.c \
-			source/render/debug_file.c \
+			src/render/all.c \
+			src/render/screen_end.c \
+			src/render/screen_game.c \
+			src/render/screen_menu.c \
+			src/render/debug_file.c \
 
 
 SRC_LIB =	lib/my/my_compute_power_rec.c \
